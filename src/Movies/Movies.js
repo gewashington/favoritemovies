@@ -5,7 +5,31 @@ import MovieList from './MovieList';
 import Movie from './Movie';
 
 
+
 class Movies extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      name: '',
+      ratings:[]
+    }
+  }
+
+  // addUserRating = ( movie, userRating ) => {
+  //   const { ratings } = this.state;
+  //   this.setState({
+  //     ratings: [...ratings, movie.name: userRating]
+  //   })
+  // }
+
+  addUserRating  = (newRating) => {
+      const { ratings } = this.state;
+      this.setState({
+        ratings: [...ratings, newRating]
+      })
+      // console.log(newRating)
+}
+
   renderMovie = props => {
     const { id } = props.match.params;
     // const id = props.match.params.id
@@ -14,14 +38,18 @@ class Movies extends React.Component {
     if (!movie) {
       return <div> could not find movie </div>;
     } else {
+      console.log(this.state.ratings)
       return <Movie name={movie.name}
         year={movie.year}
-        genre={movie.genre}
+        genre={movie.genre.join(', ')}
         director={movie.director}
         firstActor={movie.firstActor}
         secondActor={movie.secondActor}
         image={movie.image}
-        imdb={movie.imdb} />;
+        imdb={movie.imdb}
+        userRatingChange={this.addUserRating}
+        currentUserRating={3}
+        />;
     }
   };
 

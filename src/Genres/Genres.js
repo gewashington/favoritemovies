@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import movieAPI from '../Movies/movieAPI';
-import { Dropdown } from 'semantic-ui-react';
 import MovieList from '../Movies/MovieList';
 import Movies from '../Movies/Movies';
 
