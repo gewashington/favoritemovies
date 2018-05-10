@@ -22,23 +22,23 @@ class Movies extends React.Component {
   //   })
   // }
 
-  addUserRating  = (newRating) => {
-      const { ratings } = this.state;
-      this.setState({
-        ratings: [...ratings, newRating]
-      })
-      // console.log(newRating)
-}
+//   addUserRating  = (newRating) => {
+//       const { ratings } = this.state;
+//       this.setState({
+//         ratings: [...ratings, newRating]
+//       })
+//       // console.log(newRating)
+// }
 
   renderMovie = props => {
     const { id } = props.match.params;
+    const { ratings } = this.state;
+
     // const id = props.match.params.id
-    console.log("id: ", id);
     const movie = movieAPI.getOne(id);
     if (!movie) {
       return <div> could not find movie </div>;
     } else {
-      console.log(this.state.ratings)
       return <Movie name={movie.name}
         year={movie.year}
         genre={movie.genre.join(', ')}
@@ -47,10 +47,12 @@ class Movies extends React.Component {
         secondActor={movie.secondActor}
         image={movie.image}
         imdb={movie.imdb}
-        userRatingChange={this.addUserRating}
-        currentUserRating={3}
+        userRatingChange={ newRating => ratings[movie.id] = newRating}
+        currentUserRating={ratings[movie.id]}
         />;
     }
+
+
   };
 
   renderMovieList = () => {

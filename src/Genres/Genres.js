@@ -88,7 +88,7 @@ class Genres extends React.Component {
       handleSelect={this.handleGenreSelect}
       />
     <br/>
-    {genreSelected !== '' ? this.renderGenreList(genreSelected) : null}
+      {genreSelected !== '' ? this.renderGenreList(genreSelected) : null}
       <Switch>
         // <Route exact path="/genres/:genre" render={this.renderGenreList(genreSelected)} />
         <Route path="/movies/:id" render={Movies.renderMovie} />

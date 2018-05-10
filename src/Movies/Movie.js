@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ReactStars from 'react-stars'
+import ReactStars from 'react-stars';
 
 
 
@@ -15,7 +15,7 @@ const Movie = ({ name, year, genre, director, firstActor, secondActor, image, im
     <p>Year: {year}</p>
     <p>Genre: {genre}</p>
     <p>Director: {director}</p>
-    <p>Starring: {firstActor} , {secondActor}</p>
+    <p>Starring: {firstActor}, {secondActor}</p>
     <a href={imdb}>IMDB</a>
     <p>User Rating:</p>   <ReactStars
   count={5}

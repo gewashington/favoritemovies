@@ -4,7 +4,8 @@ import { Link, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Home from './Home';
 import Movies from './Movies/Movies';
-import Genres from './Genres/Genres'
+import Genres from './Genres/Genres';
+import Ratings from './Ratings/Ratings';
 
 const App = () => (
   <div>
@@ -12,6 +13,8 @@ const App = () => (
     <Link to='/'>Home</Link>{" "}
     <Link to='/movies'>Movies</Link>
     <Link to='/genres'>Genres</Link>
+    <Link to='/ratings'>Ratings</Link>
+
     </nav>
 
 
@@ -20,6 +23,7 @@ const App = () => (
     <Route exact path="/" component={Home} />
     <Route path='/movies' component={Movies} />
     <Route path='/genres' component={Genres} />
+    <Route path='/ratings' component={Ratings} />
   </Switch>
  </div>
 )
