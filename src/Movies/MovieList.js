@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const MovieList = ({ movies }) => (
   <ul>
+    {console.log(movies)}
     {movies.map(movie => (
       <li>
         <Link to={`/movies/${movie.id}`}>

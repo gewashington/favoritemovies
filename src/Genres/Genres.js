@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import movieAPI from '../Movies/movieAPI';
 import { Dropdown } from 'semantic-ui-react';
-// import MovieList from './MovieList';
-// import Movie from './Movie/Movie';
+import MovieList from '../Movies/MovieList';
+import Movies from '../Movies/Movies';
 
 
 class PickAGenre extends React.Component {
@@ -39,7 +39,7 @@ class Genres extends React.Component {
 
   getAllGenres = () => {
     // movies -> movie -> movie.genre
-    const genres = new Set(movieAPI.getAll().map(obj => obj.genre))
+    const genres = new Set([].concat.apply([],movieAPI.getAll().map(obj => obj.genre)))
     this.setState({ genres })
 };
 
@@ -51,6 +51,14 @@ class Genres extends React.Component {
 
   componentDidMount() {
     this.getAllGenres();
+  }
+
+  renderGenreList = ( genre ) => {
+    const movies = movieAPI.getAll().filter(movie => movie.genre.includes(genre));
+    console.log(movies)
+    // <Link to={`/genres/${genre}`} />
+    return <MovieList movies={movies} />;
+
   }
 
   // renderGenreList = props => {
@@ -80,6 +88,12 @@ class Genres extends React.Component {
       selectedValue={genreSelected}
       handleSelect={this.handleGenreSelect}
       />
+    <br/>
+    {genreSelected !== '' ? this.renderGenreList(genreSelected) : null}
+      <Switch>
+        // <Route exact path="/genres/:genre" render={this.renderGenreList(genreSelected)} />
+        <Route path="/movies/:id" render={Movies.renderMovie} />
+      </Switch>
       </div>
     );
   }
