@@ -1,29 +1,9 @@
 import React from 'react';
+import SelectList  from '../Movies/SelectList';
 import { Route, Switch } from 'react-router-dom';
 import movieAPI from '../Movies/movieAPI';
 import MovieList from '../Movies/MovieList';
 import Movies from '../Movies/Movies';
-
-
-class PickAGenre extends React.Component {
-  render() {
-    const { values, selectedValue, handleSelect } = this.props
-    const displayValues = ['', ...values]
-
-    return (
-      <div>
-        <select
-          value={selectedValue}
-          onChange={handleSelect}
-          placeholder="Genre"
-        >
-          {displayValues.map(val =>
-            <option value={val}>{val}</option>)}
-        </select>
-      </div>
-    )
-  }
-}
 
 
 class Genres extends React.Component {
@@ -82,7 +62,7 @@ class Genres extends React.Component {
     return(
       <div>
       <p>Select a Genre</p>
-      <PickAGenre
+      <SelectList
       values={genres}
       selectedValue={genreSelected}
       handleSelect={this.handleGenreSelect}

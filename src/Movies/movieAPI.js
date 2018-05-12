@@ -15,7 +15,15 @@ const getAll = () => movies;
 
 const getOne = id => movies.find(movie => movie.id === id);
 
+const updateRating = (userRating, movieID) => {
+  // let currentMovie = movies.find(movie => movie.id === movieID);
+  // console.log(movieID)
+  // currentMovie.rating = userRating
+}
+
 export default {
   getOne,
-  getAll
+  getAll,
+  updateRating
+
 };

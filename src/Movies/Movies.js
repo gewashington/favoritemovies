@@ -5,14 +5,14 @@ import MovieList from './MovieList';
 import Movie from './Movie';
 
 
-
 class Movies extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      name: '',
-      ratings:[]
-    }
+  constructor(props) {
+    super(props)
+  }
+
+state = {
+    id: '',
+    name: '',
   }
 
   // addUserRating = ( movie, userRating ) => {
@@ -22,33 +22,30 @@ class Movies extends React.Component {
   //   })
   // }
 
-//   addUserRating  = (newRating) => {
-//       const { ratings } = this.state;
+//   addUserRating  = (e) => {
+//       const { id } = this.state;
+//       let newRating = e
 //       this.setState({
-//         ratings: [...ratings, newRating]
+//         ratings: newRating //[...ratings, newRating]
+//
 //       })
-//       // console.log(newRating)
+//       movieAPI.updateRating(newRating, id);
+//       console.log(this.props)
 // }
 
-  renderMovie = props => {
+  renderMovie = (props) => {
     const { id } = props.match.params;
-    const { ratings } = this.state;
+    const { updateRating, ratings } = this.props;
 
     // const id = props.match.params.id
     const movie = movieAPI.getOne(id);
     if (!movie) {
       return <div> could not find movie </div>;
     } else {
-      return <Movie name={movie.name}
-        year={movie.year}
-        genre={movie.genre.join(', ')}
-        director={movie.director}
-        firstActor={movie.firstActor}
-        secondActor={movie.secondActor}
-        image={movie.image}
-        imdb={movie.imdb}
-        userRatingChange={ newRating => ratings[movie.id] = newRating}
-        currentUserRating={ratings[movie.id]}
+      return <Movie
+        movie={movie}
+        updateRating={updateRating}
+        ratings={ratings}
         />;
     }
 
@@ -59,6 +56,8 @@ class Movies extends React.Component {
     const movies = movieAPI.getAll();
     return <MovieList movies={movies} />;
   };
+
+
 
   render() {
     return (
