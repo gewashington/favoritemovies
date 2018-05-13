@@ -15,23 +15,6 @@ state = {
     name: '',
   }
 
-  // addUserRating = ( movie, userRating ) => {
-  //   const { ratings } = this.state;
-  //   this.setState({
-  //     ratings: [...ratings, movie.name: userRating]
-  //   })
-  // }
-
-//   addUserRating  = (e) => {
-//       const { id } = this.state;
-//       let newRating = e
-//       this.setState({
-//         ratings: newRating //[...ratings, newRating]
-//
-//       })
-//       movieAPI.updateRating(newRating, id);
-//       console.log(this.props)
-// }
 
   renderMovie = (props) => {
     const { id } = props.match.params;

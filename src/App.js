@@ -60,7 +60,7 @@ render() {
         <Route exact path="/" component={Home} />
         <Route path='/movies' component={(props) => <Movies {...props} updateRating={this.updateRating} ratings={ratings}/>} />
         <Route path='/genres' component={Genres} />
-        <Route path='/ratings' component={Ratings} />
+        <Route path='/ratings'component={(props) => <Ratings {...props} ratings={ratings}/>} />
       </Switch>
      </div>
   )
