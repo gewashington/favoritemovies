@@ -51,6 +51,7 @@ render() {
   const { name, year, genre, director, firstActor, secondActor, image, imdb } = movie;
   const {  numberOfStars } = this.state;
   console.log('state', this.state);
+  console.log('props:', this.props)
   return (
   <div>
     <div>

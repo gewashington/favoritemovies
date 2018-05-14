@@ -12,35 +12,36 @@ class Ratings extends React.Component {
     super(props);
 }
     state = {
-      ratings: []
+      ratingsList: []
     }
 
-    getAllRatings = () => {
-      // movies -> movie -> movie.genre
-      const ratings = this.props;
-      this.setState({ ratings })
-      console.log('ratings:', ratings)
+    getAllRatings = (props) => {
+    const { ratings } = this.props;
+    const ratingsList = this.state;
+
+    this.setState({
+      ratingsList: new Set(ratings.map(obj => obj.rating))
+    })
+
+
   };
 
     renderRatingList = (rating) => {
-      const { ratings } = this.state;
-      console.log('renderRatingList', ratings.hasOwnProperty(ratings)])
-
-      // const movies = movieAPI.getAll().filter(movie =>  movie.id.includes(newRatings.filter(obj => obj.movie.id)));
-      // <Link to={`/genres/${genre}`} />
-      // return <MovieList movies={movies} />;
+      const { ratings } = this.props;
+      console.log("ratings", ratings)
+      const filteredRatings = ratings.filter(obj => obj.rating === Number(rating) )
+      const movies = movieAPI.getAll().filter(movie => filteredRatings.some(filteredMovie => movie.id == filteredMovie.id));
+      console.log("filtered: ", filteredRatings, 'selected rating: ', Number(rating))
+      return <MovieList movies={movies} />;
 
     }
 
-// getAllRatings = (props) => {
-//   const { ratings } = this.props;
-//   console.log('getallratings:', ratings)
-// }
 
 handleRatingSelect = e => {
   this.setState({
     ratingSelected: e.target.value
   })
+    console.log(e.target.value)
 };
 
 componentDidMount() {
@@ -50,12 +51,12 @@ componentDidMount() {
 
 
   render() {
-    const { ratings, ratingSelected } = this.state;
+    const { ratingsList, ratingSelected } = this.state;
     return(
       <div>
         <p>Select a Rating</p>
         <SelectList
-        values={ratings}
+        values={ratingsList}
         selectedValue={ratingSelected}
         handleSelect={this.handleRatingSelect}
         />
