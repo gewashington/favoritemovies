@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link, Switch, Route, withRouter } from 'react-router-dom';
 //import movies here
 import './App.css';
 import Home from './Home';
@@ -43,7 +43,7 @@ class App extends React.Component {
   }
 
 render() {
-    const { ratings } = this.state;
+  const { ratings } = this.state;
   return(
       <div>
         <nav>
@@ -67,4 +67,4 @@ render() {
 }
 }
 
-export default App;
+export default withRouter(App);

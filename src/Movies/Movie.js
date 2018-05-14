@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import ReactStars from 'react-stars';
 import  SelectList  from './SelectList';
 import movieAPI from './movieAPI'
@@ -34,6 +34,11 @@ handleStars = e => {
   })
   console.log('props', this.props);
   updateRating(e, movie.id)
+}
+
+handleBack = e => {
+  e.preventDefault
+  this.props.history.goBack()
 }
 
 
@@ -72,14 +77,16 @@ render() {
         />
 
     </div>
-    <p><Link to="/movies">Back</Link></p>
+    <p><Link to="/movies">Movies</Link></p>
+    <button onClick={this.handleBack}>Go Back</button>
+
     </div>
   </div>
 );
 }
 }
 
-export default Movie;
+export default withRouter(Movie);
 
 // <SelectList
 //   values={starArr}
